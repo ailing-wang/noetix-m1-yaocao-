@@ -1,0 +1,26 @@
+# Generated build outputs
+/build/
+/build-servo-test/
+
+# Runtime data and local editor state
+/logs/
+/.vscode/
+
+# Local parameter experiments and backups
+*.bak
+*.bak-*
+*.opt-*
+
+# Compiled artifacts
+*.o
+*.so
+*.a
+*.out
+
+# Crash and temporary files
+core
+core.*
+*.tmp
+*.swp
+*~
+

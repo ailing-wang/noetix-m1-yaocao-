@@ -1,0 +1,25 @@
+[Unit]
+Description=Noetix dual-arm UDP controller
+Wants=network-online.target systemd-udev-settle.service
+After=network-online.target systemd-udev-settle.service
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+User=noetix
+Group=noetix
+WorkingDirectory=/home/noetix/workspace/noetix-m1-yaocao
+ExecStartPre=/usr/bin/udevadm settle --timeout=20
+ExecStartPre=/usr/bin/test -e /dev/noetix_arm_l1
+ExecStartPre=/usr/bin/test -e /dev/noetix_arm_l2
+ExecStartPre=/usr/bin/test -e /dev/noetix_arm_r1
+ExecStartPre=/usr/bin/test -e /dev/noetix_arm_r2
+ExecStartPre=/bin/sleep 8
+ExecStart=/home/noetix/workspace/noetix-m1-yaocao/startup.sh
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=15
+KillMode=control-group
+
+[Install]
+WantedBy=multi-user.target
